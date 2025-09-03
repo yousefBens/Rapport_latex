@@ -1,0 +1,140 @@
+%\documentclass{rapportECL} % Assurez-vous que rapportECL.cls est présent
+\documentclass[]{report}
+% ============================
+% Langue & Encodage
+% ============================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[numbers]{natbib}   % ou toute autre option de natbib
+\usepackage[french]{babel}
+\usepackage{lmodern}
+
+% ============================
+% Mathématiques & symboles
+% ============================
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+% ============================
+% Mise en page
+% ============================
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.3}
+
+% ============================
+% Figures & tableaux
+% ============================
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+
+\usepackage{comment}
+
+% ============================
+% Code source
+% ============================
+\usepackage{listings}
+\usepackage{xcolor} % nécessaire pour les couleurs dans listings
+\lstdefinestyle{python}{
+	language=Python,
+	backgroundcolor=\color{white},
+	basicstyle=\ttfamily\small,
+	breaklines=true,
+	captionpos=b,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	commentstyle=\color{green},
+	keywordstyle=\color{blue},
+	stringstyle=\color{orange},
+	showstringspaces=false,
+	frame=single,
+	rulecolor=\color{black},
+	title=\lstname,
+}
+
+% ============================
+% Références & hyperliens
+% ============================
+\usepackage{natbib} % pour citations numérotées
+\usepackage[hypertexnames=false]{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=teal,
+	citecolor=violet,
+	pdftitle={Rapport ECL},
+}
+
+% Numéros de bibliographie en violet
+\makeatletter
+\renewcommand\@biblabel[1]{\textcolor{violet}{[#1]}}
+\makeatother
+
+% ============================
+% En-têtes
+% ============================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyheadoffset{1cm}
+\setlength{\headheight}{2cm}
+\lhead{\leftmark}
+\rhead{BENSOUDANE Yousef}
+
+% ============================
+% Théorèmes
+% ============================
+%\newtheorem{definition}{Définition}
+%\newtheorem{Theoreme}{Théorème}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemme}{Lemme}
+%\newtheorem{Corollary}{Corollaire}
+%\newtheorem{Exemple}{Exemple}
+
+% ============================
+% Date
+% ============================
+\usepackage[nodayofweek,level]{datetime}
+\newcommand{\mydate}{\formatdate{27}{6}{2024}}
+
+% ============================
+% DOCUMENT
+% ============================
+\begin{document}
+	
+	% Page de garde
+	\include{GardePage}
+	
+	%----------- Table des matières -------------------
+	\tableofcontents % Remplace \tabledematieres
+	
+	%------------ Corps du rapport ----------------
+	\include{TEX/Chap1}
+%	\include{TEX/Chap2}
+%	\include{TEX/Chap3}
+%	\include{TEX/Conclusion}
+	
+	%------------ Figures -------------------------
+	\clearpage
+	\pagenumbering{roman}
+	\begin{spacing}{0.95}
+		\listoffigures 
+		\addcontentsline{toc}{chapter}{Table des Figures}
+	\end{spacing}
+	
+	%------------ Bibliographie -------------------
+	\clearpage
+	\begin{spacing}{1.0}
+		\bibliographystyle{unsrt} % Style numérique [1], [2], ...
+		\addcontentsline{toc}{chapter}{Bibliographie}
+		\bibliography{/home/yousef/JabRef/Test1} % Modifie le chemin si nécessaire
+	\end{spacing}
+	
+\end{document}
