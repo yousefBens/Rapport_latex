@@ -1,0 +1,72 @@
+# 📝 Git & GitHub – Guide Complet
+
+## 1️⃣ Configuration initiale (une seule fois)
+git config --global user.name "TonNom"        # Configure ton nom pour les commits
+git config --global user.email "ton.email@example.com"  # Configure ton email
+git config --global credential.helper store   # Sauvegarde ton mot de passe ou token
+
+## 2️⃣ Création ou clonage d’un dépôt
+git init                                    # Initialise un dépôt Git dans le dossier courant
+git clone https://github.com/utilisateur/mon-projet.git  # Clone un dépôt GitHub existant
+
+## 3️⃣ Vérifier l’état du dépôt
+git status                                  # Montre les fichiers modifiés, non suivis, etc.
+git diff                                    # Montre les différences avant commit
+
+## 4️⃣ Ajouter des fichiers à l’index
+git add .                                   # Ajoute tous les fichiers modifiés
+git add fichier.txt                          # Ajoute un fichier spécifique
+
+## 5️⃣ Créer un commit (sauvegarde locale)
+git commit -m "Message clair décrivant les changements"
+
+## 6️⃣ Branches (travailler en parallèle)
+git branch                                   # Liste les branches
+git branch ma-branche                        # Crée une nouvelle branche
+git checkout ma-branche                      # Passe sur la branche
+git checkout -b ma-branche                   # Crée et passe sur la branche en une seule commande
+git merge ma-branche                          # Fusionne ma-branche dans la branche courante
+git branch -d ma-branche                     # Supprime une branche locale
+
+## 7️⃣ Lier le dépôt local à GitHub
+git remote add origin https://github.com/utilisateur/mon-projet.git
+git remote -v                                # Vérifie les remotes
+git remote remove origin                      # Supprime le remote si nécessaire
+
+## 8️⃣ Envoyer les changements sur GitHub
+git push -u origin main                       # Premier push, lie la branche locale à GitHub
+git push                                      # Push normal après liaison
+git push --force                              # Force le push (écrase GitHub, attention)
+
+## 9️⃣ Récupérer les changements depuis GitHub
+git pull                                      # Récupère les changements et merge automatiquement
+git pull --rebase                             # Récupère et replace tes commits locaux au-dessus
+
+## 🔟 Historique et navigation
+git log                                       # Affiche l’historique complet
+git log --oneline                             # Historique simplifié
+git checkout <id_commit>                      # Revenir à une version spécifique
+git reset --hard <id_commit>                  # Revenir à une version et supprimer les commits récents
+
+## 1️⃣1️⃣ Réinitialiser un dépôt existant
+rm -rf .git                                   # Supprime tout l’historique Git
+git init                                      # Réinitialise le dépôt
+git add .                                     # Ajoute tous les fichiers
+git commit -m "Initial commit"               # Premier commit propre
+
+## 1️⃣2️⃣ Travailler avec SSH (plus pratique que le token)
+ssh-keygen -t ed25519 -C "ton.email@example.com"   # Génère une clé SSH
+eval "$(ssh-agent -s)"                              # Démarre l’agent SSH
+ssh-add ~/.ssh/id_ed25519                            # Ajoute la clé à l’agent
+cat ~/.ssh/id_ed25519.pub                            # Copie la clé publique pour GitHub
+ssh -T git@github.com                                # Teste la connexion
+git remote set-url origin git@github.com:utilisateur/mon-projet.git  # Passe en SSH
+
+## 1️⃣3️⃣ Workflow typique au quotidien
+1. Modifier des fichiers
+2. Vérifier les fichiers : git status
+3. Ajouter : git add .
+4. Commit : git commit -m "Description"
+5. Push : git push
+6. Si GitHub a des changements : git pull --rebase puis git push
+
